@@ -1,35 +1,30 @@
-# B(ornot)2B
+# B(ornot)2B — How business gets done.
 
-Авторский субботний журнал о бизнесе между компаниями по всему миру.
+A Saturday journal exploring how companies buy, sell and work together around the world.
 
-## Что подготовлено
+## Public edition
 
-Сохранён дизайн последнего выпуска и четыре подробных разбора. Главная открывает последний выпуск, архив — отдельную страницу. В комплекте только читательский сайт. Книжные PDF/EPUB, внутренние редакционные заметки, исходные учётные данные и идентификаторы размещения Sites не включены. Изображения перекодированы в WebP с сохранением прозрачности. У коротких книжных цитат подпись дополнена именами авторов.
+Owner-approved English edition 01 and voluntary Boosty support were approved for public release on October 31, 2026.
 
-`site/` — страницы и ассеты; `scripts/` — сборка и проверка без внешних Python-зависимостей. Вёрстка использует системные шрифты и не распространяет файлы гарнитур.
+- Main site: https://bornot2b.com/ — English by default.
+- Russian edition: https://bornot2b.com/ru/.
+- Stable issue: /issue-01/; archive: /archive/.
+- Each reader page links to its language counterpart.
+- One-time support: https://boosty.to/bornot2b/donate. All stories remain free.
 
-## Перед первым публичным размещением
+Boosty Basic verification is complete and a primary RUB payout card is linked. Real payments and payouts have not been tested.
 
-1. Репозиторий: `rafaelinka/bornot2b`. Подготовка начата в закрытом доступе.
-2. Сначала разместить комплект в закрытом репозитории для просмотра владельцем. Для бесплатного GitHub Pages репозиторий должен стать публичным; это отдельно утверждает владелец.
-3. Завершить проверку обложек книг и фирменных знаков. Генерация изображения не гарантирует отсутствие прав третьих лиц.
-4. Утвердить финальные тексты, сведения об авторе проекта и описание применения ИИ. Не заявлять о независимом человеческом фактчеке до его проведения.
-5. В Settings → Pages выбрать GitHub Actions.
-6. В Actions запустить `Publish approved issue` из `main`, отметив подтверждение утверждения номера.
+## Editorial approach
 
-Сохранение файлов запускает только проверку. Ни push, ни pull request не публикуют сайт. Ручное подтверждение в workflow — организационное правило; оно не заменяет разграничение доступа между редакторами, если команда вырастет.
+Primary-source facts, company claims and editorial interpretation are distinguished. Text and illustrations are prepared with AI assistance. No independent human fact-check or English copyedit is claimed. See docs/editorial-format.md.
 
-Кнопка поддержки не добавлена: для неё нужна реальная, принадлежащая автору ссылка платёжного сервиса.
+The site uses system fonts; it distributes no font files. Raw book files, internal research notes and credentials are excluded. Third-party rights in books and company marks remain with their owners. Rights clearance of third-party imagery should not be assumed from AI generation.
 
-## Проверка локально
+## Build and publication
 
 ```sh
-python3 scripts/build.py --base-url https://example.invalid/bornot2b
-python3 scripts/validate.py --base-url https://example.invalid/bornot2b
+python3 scripts/build.py --base-url https://bornot2b.com
+python3 scripts/validate.py --base-url https://bornot2b.com
 ```
 
-Для собственного домена сборка получает его полный HTTPS-адрес. Пути, canonical и sitemap обновляются при сборке. Домен и платный хостинг для первого размещения не нужны.
-
-## Права
-
-Открытый доступ к репозиторию сам по себе не означает выдачу лицензии на все материалы. Права на упомянутые бренды, книги и иные произведения третьих лиц сохраняются за правообладателями. Этот комплект не является юридическим заключением.
+GitHub Actions builds from source. Pushes only run checks. Publication is manual through `Publish approved issue` on main, after owner approval. HTTPS is enforced for the custom domain.

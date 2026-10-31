@@ -12,6 +12,8 @@ class Doc(HTMLParser):
  def __init__(self,text):super().__init__();self.ids=[];self.refs=[];self.images=[];self.h1=0;self.feed(text)
  def handle_starttag(self,tag,attrs):
   d=dict(attrs)
+  if tag=='html':self.lang=d.get('lang')
+  if tag in ('link','meta') and d.get('rel')=='canonical':self.canonical=d.get('href')
   if 'id' in d:self.ids.append(d['id'])
   for k in ('src','href'):
    if d.get(k):self.refs.append(d[k])
@@ -42,8 +44,20 @@ for p in root.rglob('*'):
   b=p.read_bytes()
   if len(b)<12 or b[:4]!=b'RIFF' or b[8:12]!=b'WEBP' or int.from_bytes(b[4:8], 'little')+8!=len(b):errors.append(f'{p}: invalid WebP asset')
  if p.suffix.lower() in ('.pdf','.epub','.env') or 'editorial' in p.relative_to(root).parts:errors.append(f'Excluded content: {p}')
- if p.is_file() and p.suffix in ('.html','.js','.css') and 'bornot-b2b-concept-2026.wry-calf-7403.chatgpt.site' in p.read_text():errors.append(f'{p}: old origin')
+ if base.netloc!='bornot-b2b-concept-2026.wry-calf-7403.chatgpt.site' and p.is_file() and p.suffix in ('.html','.js','.css') and 'bornot-b2b-concept-2026.wry-calf-7403.chatgpt.site' in p.read_text():errors.append(f'{p}: old origin')
 assert (root/'index.html').read_bytes()==(root/'issue-01/index.html').read_bytes(),'Homepage and latest issue differ'
 assert len(list(root.glob('read/*/index.html')))==4,'Expected four long reads'
+assert len(list(root.glob('ru/read/*/index.html')))==4,'Expected four preserved Russian long reads'
+assert re.search(r'<main\b.*?</main>',(root/'ru/index.html').read_text(),re.S)[0]==re.search(r'<main\b.*?</main>',(root/'ru/issue-01/index.html').read_text(),re.S)[0],'Russian homepage and issue content differ'
+for p,d in docs.items():
+ if 'issue-00' in p.parts:continue
+ text=p.read_text();is_ru='ru' in p.relative_to(root).parts
+ if d.lang!=('ru' if is_ru else 'en'):errors.append(f'{p}: incorrect document language')
+ if not is_ru and re.search('[А-Яа-яЁё]',re.sub('<[^>]*>',' ',text)):errors.append(f'{p}: untranslated Cyrillic reader text')
+ for language in ('en','ru'):
+  if f'hreflang="{language}"' not in text:errors.append(f'{p}: missing {language} alternate')
+for slug,total in [('partnership-economy',6),('jolt-effect',7)]:
+ text=(root/'read'/slug/'index.html').read_text()
+ if text.count('class="book-idea"')!=total:errors.append(f'{slug}: expected {total} book ideas')
 if errors:print('\n'.join(errors));sys.exit(1)
 print(f'PASS: {len(docs)} reader pages, {count} local references, no raw books or internal editorial content.')
