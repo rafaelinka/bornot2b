@@ -1,0 +1,47 @@
+name: Publish approved issue
+on:
+  workflow_dispatch:
+    inputs:
+      approved:
+        description: 'I have approved this issue for public publication'
+        required: true
+        default: false
+        type: boolean
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: ${{ inputs.approved && github.ref == 'refs/heads/main' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Get Pages configuration
+        id: pages
+        uses: actions/configure-pages@v5
+      - name: Build reader site
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: python3 scripts/build.py --base-url "$BASE_URL"
+      - name: Check before publication
+        env:
+          BASE_URL: ${{ steps.pages.outputs.base_url }}
+        run: python3 scripts/validate.py --base-url "$BASE_URL"
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish approved issue
+        id: deployment
+        uses: actions/deploy-pages@v5

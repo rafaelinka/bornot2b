@@ -1,0 +1,17 @@
+name: Check magazine
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build with a project path
+        run: python3 scripts/build.py --base-url https://example.invalid/bornot2b
+      - name: Check reader pages and assets
+        run: python3 scripts/validate.py --base-url https://example.invalid/bornot2b

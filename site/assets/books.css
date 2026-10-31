@@ -1,0 +1,95 @@
+/* Close reading: original ideas, editorial applications and chapter references. */
+.book-section .book-section-intro{max-width:780px;font-size:19px;line-height:1.65;margin:26px 0 8px;color:#315e55}
+.book-section .book-grid{align-items:center;gap:42px}
+.book-section .book-grid+.book-grid{margin-top:45px;padding-top:35px;border-top:1px solid #719e9066}
+.book-section .jolt-preview{grid-template-columns:1.02fr .98fr}
+.book-section .jolt-preview .book-visual{grid-column:2;grid-row:1}
+.book-section .jolt-preview .book-copy{grid-column:1;grid-row:1}
+.book-section .book-title{font-size:clamp(30px,3.5vw,45px)!important}
+.book-mini-ideas{list-style:none;padding:0;margin:22px 0;display:grid;gap:16px}
+.book-mini-ideas li{padding-left:17px;border-left:3px solid #82bbab;font-size:15px;line-height:1.7;color:#315e55}
+.book-mini-ideas b{display:block;font-weight:750}
+.book-section .book-open{display:inline-flex;align-items:center;gap:22px;text-decoration:none;background:#245d52;color:#fff;padding:15px 21px;border-radius:30px;font-size:14px;font-weight:700;line-height:1.5}
+.book-section .book-open:hover{background:#163e36}
+.book-section .book-open:focus-visible{outline-color:#245d52}
+.book-section .book-bridge{font-size:16px;line-height:1.8;color:#345e53;margin:35px 0 0;padding-top:24px;border-top:1px solid #719e9066}
+.action-section .action-intro{display:grid;grid-template-columns:1fr .9fr;align-items:center;gap:25px;margin-top:25px}
+.action-intro .section-title{display:block;margin:0}
+.action-intro .section-title h2{font-size:clamp(34px,4vw,54px);max-width:570px}
+.action-scene{margin:-5px -10px -10px;width:calc(100% + 20px)}
+.action-scene img{display:block;width:100%;height:auto;background:transparent;border:0;border-radius:0;box-shadow:none}
+.action-section .action-list{margin-top:18px}
+.action-section .action-outcome{font-size:15px;line-height:1.8;max-width:830px;color:#566338;margin:15px 0 0}
+.book-reader{--book-accent:#245d52;--book-pale:#d7f0ea;--book-apply:#eaf5ee}
+.book-reader.jolt-reader{--book-accent:#864137;--book-pale:#ffe1cc;--book-apply:#fff0e3}
+.book-reader .book-hero{display:grid;grid-template-columns:1.1fr 1fr;gap:25px;align-items:center;padding:36px 38px;background:var(--book-pale);border-radius:34px;margin-top:18px}
+.book-reader .book-hero h1{font-size:clamp(38px,4.5vw,64px);line-height:1.08;letter-spacing:-.045em;font-weight:750;color:var(--book-accent)}
+.book-reader .book-hero .standfirst{font-family:inherit;font-size:19px;line-height:1.65;color:var(--book-accent);margin-top:23px;letter-spacing:0}
+.book-reader .book-hero .kicker{font-size:11px;line-height:1.8;color:var(--book-accent)}
+.book-hero-art{margin:0 -10px 0 0}
+.book-hero-art img{display:block;width:100%;height:auto;background:transparent}
+.book-bibliography{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:25px;font-size:12px;line-height:1.8;color:var(--book-accent)}
+.book-reader .article-layout{grid-template-columns:215px minmax(0,790px);gap:50px;padding-top:42px}
+.book-reader .article-nav{font-size:13px;line-height:1.7;gap:13px}
+.book-reader .article-nav a{max-width:210px;color:#6c5e77}
+.book-reader .article-nav>span{font-size:10px;color:var(--book-accent)}
+.book-reader .prose{color:#4f4a58;font-size:18px;line-height:1.85}
+.book-reader .prose .lead{font-family:inherit;font-size:23px;line-height:1.6;letter-spacing:-.015em;color:#49424f}
+.book-reader .reading-note{border-left:3px solid var(--book-accent);padding-left:18px;color:#6c6172;font-size:14px;line-height:1.8;margin:24px 0 36px}
+.book-idea{scroll-margin-top:110px;margin:0 0 45px}
+.book-reader .book-idea h2{font-size:clamp(27px,3vw,37px);line-height:1.2;letter-spacing:-.03em;margin:0 0 24px;color:var(--book-accent)}
+.book-idea .idea-locator{display:block;font-size:11px;line-height:1.8;letter-spacing:.06em;text-transform:uppercase;color:#766b7c;margin-bottom:12px}
+.book-reader .book-quote{background:var(--book-pale);color:var(--book-accent);font-size:23px;line-height:1.55;padding:25px 28px;margin:25px 0;border-radius:25px}
+.book-quote p{margin:0 0 12px!important}
+.book-quote cite{font-size:12px;line-height:1.7;display:block;font-style:normal;letter-spacing:0}
+.book-quote small{display:block;font-size:15px;line-height:1.8;letter-spacing:0;margin-top:12px}
+.book-application{padding:24px 27px;background:var(--book-apply);border-radius:24px;margin:22px 0}
+.book-application .application-label{font-size:10px;line-height:1.8;font-weight:750;text-transform:uppercase;letter-spacing:.08em;display:block;color:var(--book-accent);margin-bottom:10px}
+.book-application p:last-child{margin:0}
+.book-boundary{font-size:15px;line-height:1.8;color:#716476;margin:20px 0}
+.book-boundary b{color:#55495d}
+.book-reader .book-workshop{background:var(--book-pale);padding:28px;border-radius:26px;scroll-margin-top:110px;margin:40px 0}
+.book-workshop h2{font-size:29px;line-height:1.2;color:var(--book-accent);letter-spacing:-.025em}
+.book-workshop ol{padding-left:22px;margin-bottom:0}
+.book-workshop li{padding-left:6px;margin:12px 0}
+.book-reader .book-method{scroll-margin-top:110px;border-top:1px solid #d8cde0;padding-top:28px;font-size:15px;line-height:1.85}
+.book-method h2{font-size:27px;line-height:1.2;color:var(--book-accent);letter-spacing:-.02em}
+.book-method a{overflow-wrap:anywhere}
+.book-crosslink{border-top:1px solid #d8cde0;padding:25px 0 0;margin-top:32px;line-height:1.7}
+.book-crosslink a{font-weight:700;color:var(--book-accent)}
+@media(max-width:1000px){.book-reader .article-layout{grid-template-columns:170px minmax(0,1fr);gap:30px}.book-reader .book-hero{padding:30px;grid-template-columns:1.1fr .9fr}}
+@media(max-width:760px){
+ .book-section .book-section-intro{font-size:17px;margin-top:20px}
+ .book-section .book-grid,.book-section .jolt-preview{grid-template-columns:1fr;gap:20px}
+ .book-section .jolt-preview .book-visual,.book-section .jolt-preview .book-copy{grid-column:auto;grid-row:auto}
+ .book-section .book-grid+.book-grid{margin-top:32px;padding-top:25px}
+ .book-section .book-copy .book-title{font-size:31px!important}
+ .book-section .book-open{font-size:14px;padding:14px 19px}
+ .book-section .book-bridge{font-size:15px;margin-top:27px}
+ .action-section .action-intro{grid-template-columns:1fr;gap:10px;margin-top:20px}
+ .action-intro .section-title h2{font-size:33px}
+ .action-scene{max-width:570px;justify-self:center;margin-block:0}
+ .action-section .action-list{margin-top:10px}
+ .action-section .action-outcome{font-size:14px}
+ .book-reader .book-hero{display:flex;flex-direction:column;padding:25px 21px;gap:15px;border-radius:28px}
+ .book-reader .book-hero h1{font-size:39px;line-height:1.1;letter-spacing:-.04em}
+ .book-reader .book-hero .standfirst{font-size:17px;margin-top:19px}
+ .book-bibliography{font-size:11px;gap:6px 15px;margin-top:18px}
+ .book-hero-art{width:calc(100% + 14px);margin:0 -7px;max-width:550px}
+ .book-reader .article-layout{display:block;padding:27px 0 45px}
+ .book-reader .article-nav{position:static;display:flex;flex-wrap:wrap;gap:10px 18px;padding:0 0 23px;margin-bottom:26px;border-bottom:1px solid #d8cde0}
+ .book-reader .article-nav>span{flex-basis:100%;margin:0}
+ .book-reader .article-nav a{font-size:12px;max-width:none}
+ .book-reader .prose{font-size:17px;line-height:1.85}
+ .book-reader .prose .lead{font-size:21px}
+ .book-reader .book-idea h2{font-size:29px;line-height:1.2}
+ .book-reader .book-quote{padding:22px;font-size:21px}
+ .book-reader .reading-note{font-size:14px;margin-bottom:30px}
+ .book-application{padding:21px 20px}
+ .book-reader .book-workshop{padding:23px 20px}
+ .book-reader .book-workshop h2{font-size:27px}
+ .book-reader .book-method{font-size:14px}
+}
+
+.action-intro .section-title>p{font-size:17px;line-height:1.75;color:#68783f}
+@media(max-width:760px){.action-intro .section-title>p{font-size:15px;line-height:1.75}}
