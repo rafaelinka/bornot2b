@@ -1,0 +1,102 @@
+.archive-cover-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(16px, 3vw, 32px);
+  max-width: 1060px;
+  margin: 24px 0 56px;
+}
+.archive-cover-grid .archive-cover {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  overflow: hidden;
+  border-radius: 22px;
+  color: #fff;
+  background: #38278b;
+  text-decoration: none;
+  box-shadow: 0 16px 32px #29183924;
+  transition: transform .22s ease, box-shadow .22s ease;
+}
+.archive-cover-grid .archive-cover-01 {
+  background: #ffe375;
+  color: #26164a;
+}
+.archive-cover-mast {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 17px 20px;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 850;
+}
+.archive-cover-mast span:last-child {
+  font-size: 11px;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.archive-cover-grid img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.archive-cover-copy {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px 22px;
+}
+.archive-cover-copy p {
+  margin: 0;
+  color: inherit;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .11em;
+  text-transform: uppercase;
+}
+.archive-cover-copy h2 {
+  margin: 0 0 6px;
+  color: inherit;
+  font-size: clamp(26px, 4vw, 44px);
+  line-height: 1.02;
+  overflow-wrap: anywhere;
+}
+.archive-cover-copy span {
+  margin-top: auto;
+  font-size: 13px;
+}
+.archive-cover-copy i {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  font-size: 21px;
+  line-height: 1;
+  font-style: normal;
+}
+.archive-cover-grid .archive-cover:focus-visible {
+  outline: 3px solid #8764d8;
+  outline-offset: 4px;
+}
+@media (hover: hover) {
+  .archive-cover-grid .archive-cover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 38px #29183936;
+  }
+}
+@media (max-width: 590px) {
+  .archive-cover-grid {grid-template-columns: minmax(0, 1fr);}
+}
+@media (prefers-reduced-motion: reduce) {
+  .archive-cover-grid .archive-cover {transition: none;}
+}
+
+.archive-main h1 {
+  font-size: clamp(40px, 6.5vw, 88px);
+  margin: 18px 0 12px;
+}
+.archive-main .archive-intro {
+  margin: 0 0 20px;
+}

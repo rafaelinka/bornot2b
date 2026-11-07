@@ -1,0 +1,199 @@
+.issue02-content{--ink:#17162c;--paper:#fcfbf7;--yellow:#ffe557;--muted:#666477;--line:#dddbe5}
+.issue02-content *{box-sizing:border-box}
+.issue02-content{margin:0;background:var(--paper);color:var(--ink);font-family:Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
+.issue02-content a{color:inherit;text-underline-offset:4px}
+.issue02-content button, .issue02-content a{-webkit-tap-highlight-color:transparent}
+.issue02-content button{font:inherit}
+.issue02-content [hidden]{display:none!important}
+.issue02-content img{display:block;max-width:100%;width:100%;height:auto}
+.issue02-content .issue-meta{max-width:1360px;margin:auto;padding:25px 4vw;display:flex;justify-content:space-between;gap:15px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.issue02-content .cover{background:#3539b9;color:#fff}
+.issue02-content .cover-type{padding:42px max(4vw,calc((100vw - 1250px)/2));padding-bottom:32px;max-width:1600px;margin:auto}
+.issue02-content .eyebrow{font-size:12px;letter-spacing:.13em;text-transform:uppercase;font-weight:800;margin:0 0 20px}
+.issue02-content .cover h1{font-size:clamp(44px,6.9vw,102px);line-height:.98;letter-spacing:-.055em;max-width:1120px;margin:0 0 24px}
+.issue02-content .cover .deck{font-size:clamp(18px,1.8vw,24px);max-width:860px;line-height:1.45;color:#eeedff}
+.issue02-content .cover .button{margin-top:4px}
+.issue02-content .cover-art{max-height:720px;overflow:hidden}
+.issue02-content .cover-art img{aspect-ratio:3/2;object-fit:cover;object-position:50% 58%;max-height:720px}
+.issue02-content .art-note{font-size:11px;line-height:1.5;color:var(--muted);padding:10px 4vw;margin:0;max-width:1400px;margin:auto}
+.issue02-content .cover .art-note{color:#d9d8fd}
+.issue02-content .button{display:inline-flex;align-items:center;gap:30px;text-decoration:none;border-radius:100px;background:var(--yellow);color:var(--ink);font-weight:800;font-size:14px;padding:17px 24px;line-height:1.3;transition:transform .2s}
+.issue02-content .button:hover{transform:translateY(-2px)}
+.issue02-content .button .arrow{font-size:22px}
+.issue02-content .editorial{padding:70px 4vw;max-width:1260px;margin:auto;display:grid;grid-template-columns:.7fr 1.3fr;gap:6vw}
+.issue02-content .editorial h2{font-size:clamp(30px,3.2vw,47px);line-height:1.06;letter-spacing:-.035em;margin:0}
+.issue02-content .editorial p{font-size:18px;line-height:1.65;margin:0 0 18px}
+.issue02-content .issue-nav{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:22px 4vw;display:flex;justify-content:center;flex-wrap:wrap;gap:10px;max-width:1500px;margin:auto}
+.issue02-content .issue-nav a{font-size:12px;font-weight:700;text-decoration:none;border:1px solid #d7d4e0;padding:11px 15px;border-radius:30px}
+.issue02-content .issue-nav a:hover{background:var(--yellow)}
+.issue02-content .feature{margin-top:76px}
+.issue02-content .section-label{display:flex;align-items:center;gap:16px;max-width:1260px;margin:0 auto 23px;padding:0 4vw;font-size:12px;text-transform:uppercase;letter-spacing:.12em;font-weight:800}
+.issue02-content .section-label .num{border-radius:50%;background:var(--ink);color:white;width:29px;height:29px;display:inline-flex;align-items:center;justify-content:center;letter-spacing:0}
+.issue02-content .feature-stage{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;background:var(--tone)}
+.issue02-content .feature-stage.reverse .feature-visual{order:2}
+.issue02-content .feature-visual{min-width:0;overflow:hidden;display:flex}
+.issue02-content .feature-visual img{height:100%;object-fit:cover;min-height:520px;object-position:center}
+.issue02-content .feature-copy{padding:clamp(30px,5vw,75px);display:flex;flex-direction:column;justify-content:center}
+.issue02-content .company{font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin:0 0 17px;line-height:1.5}
+.issue02-content .feature-copy h2{font-size:clamp(31px,3.5vw,53px);line-height:1.05;letter-spacing:-.035em;margin:0 0 20px}
+.issue02-content .feature-copy .deck{font-size:17px;line-height:1.6;margin:0 0 22px}
+.issue02-content .feature-copy .preview{font-size:15px;line-height:1.65;margin:0 0 26px}
+.issue02-content .feature-copy .button{background:var(--ink);color:white;align-self:flex-start}
+.issue02-content .reading-time{font-size:11px;margin-top:12px;color:#514d63}
+.issue02-content .brief-section{max-width:1260px;margin:auto;padding:85px 4vw 20px}
+.issue02-content .section-heading{font-size:clamp(35px,4.8vw,70px);line-height:1;letter-spacing:-.045em;margin:0 0 15px}
+.issue02-content .section-intro{font-size:18px;line-height:1.6;max-width:740px;margin:0 0 35px}
+.issue02-content .briefs{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+.issue02-content .brief{padding:28px 0;border-top:2px solid var(--ink)}
+.issue02-content .brief h3{font-size:26px;line-height:1.12;letter-spacing:-.025em;margin:10px 0 16px}
+.issue02-content .brief p{font-size:15px;line-height:1.7;margin:0 0 13px}
+.issue02-content .takeaway{background:#f0edff;padding:14px 17px;border-radius:12px}
+.issue02-content .brief small{font-size:11px;color:var(--muted);line-height:1.5}
+.issue02-content .source-links{display:flex;gap:10px;flex-wrap:wrap;font-size:12px;line-height:1.6;margin-top:14px}
+.issue02-content .source-links a{overflow-wrap:anywhere}
+.issue02-content .beyond{background:#eee9ff;margin-top:75px;padding:60px 4vw}
+.issue02-content .beyond-inner{max-width:1160px;margin:auto}
+.issue02-content .question-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;margin-top:36px}
+.issue02-content .question-grid h3{font-size:22px;line-height:1.2;margin:0 0 15px}
+.issue02-content .question-grid p{font-size:15px;line-height:1.7;margin:0}
+.issue02-content .monday{background:#ffe766;margin-top:0}
+.issue02-content .monday-head{max-width:1260px;margin:auto;padding:65px 4vw 36px;display:grid;grid-template-columns:1fr 1fr;gap:50px}
+.issue02-content .monday-head h2{font-size:clamp(40px,5vw,72px);line-height:1;letter-spacing:-.04em;margin:12px 0 20px}
+.issue02-content .monday-head p{font-size:17px;line-height:1.6}
+.issue02-content .monday-list{padding:0;list-style:none;margin:8px 0}
+.issue02-content .monday-list li{padding:15px 0;border-bottom:1px solid #bca83b;font-size:15px;line-height:1.6}
+.issue02-content .monday-list b{display:block;font-size:18px}
+.issue02-content .monday-art{max-height:560px;overflow:hidden}
+.issue02-content .monday-art img{max-height:560px;object-fit:cover;object-position:50% 50%}
+.issue02-content .reader-header{background:var(--tone)}
+.issue02-content .reader-heading{max-width:1170px;margin:auto;padding:35px 4vw 45px}
+.issue02-content .backlink{font-size:13px;font-weight:700;text-decoration:none;display:inline-block;margin-bottom:45px}
+.issue02-content .reader-heading h1{font-size:clamp(40px,5.8vw,82px);line-height:1.02;letter-spacing:-.045em;margin:0 0 24px;max-width:1070px}
+.issue02-content .reader-heading .deck{font-size:clamp(18px,2vw,25px);line-height:1.5;max-width:900px;margin:0 0 20px}
+.issue02-content .reader-hero{max-height:620px;overflow:hidden}
+.issue02-content .reader-hero img{max-height:620px;object-fit:cover;object-position:center}
+.issue02-content .reader-shell{display:grid;grid-template-columns:minmax(0,760px) 240px;gap:70px;max-width:1180px;margin:auto;padding:55px 4vw 80px}
+.issue02-content .article-body{min-width:0}
+.issue02-content .article-body p{font-size:18px;line-height:1.85;margin:0 0 23px}
+.issue02-content .article-body h2{font-size:30px;line-height:1.18;letter-spacing:-.025em;margin:46px 0 23px}
+.issue02-content .article-body section:first-child h2{margin-top:0}
+.issue02-content .article-body .facts{background:#eeecfa;padding:28px;border-radius:20px;margin-bottom:38px}
+.issue02-content .article-body .facts h2{font-size:23px;margin-top:0}
+.issue02-content .article-body .facts p{font-size:16px;line-height:1.75;margin-bottom:15px}
+.issue02-content .article-body .facts p:last-child{margin-bottom:0}
+.issue02-content .analysis-marker{padding:18px 0 22px;border-bottom:1px solid var(--line);margin-bottom:35px}
+.issue02-content .analysis-marker b{font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+.issue02-content .analysis-marker p{font-size:14px;line-height:1.7;color:var(--muted);margin:10px 0 0}
+.issue02-content .reader-aside{align-self:start;position:sticky;top:110px;border-left:1px solid var(--line);padding-left:24px}
+.issue02-content .reader-aside p{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:800;margin:0 0 20px}
+.issue02-content .reader-aside a{display:block;text-decoration:none;font-size:12px;line-height:1.5;margin-bottom:15px;color:var(--muted)}
+.issue02-content .reader-aside a:hover{color:var(--ink)}
+.issue02-content .limits{background:#f4f1e6;padding:23px;border-radius:15px;margin-top:40px}
+.issue02-content .limits p{font-size:14px;line-height:1.7;margin:0}
+.issue02-content .limits b{display:block;margin-bottom:10px;font-size:13px}
+.issue02-content .article-sources{margin-top:34px;padding-top:25px;border-top:1px solid var(--line)}
+.issue02-content .article-sources h3{font-size:13px;margin:0 0 15px}
+.issue02-content .article-sources a{display:block;font-size:13px;line-height:1.6;margin:0 0 12px;overflow-wrap:anywhere}
+.issue02-content .article-end{display:flex;gap:15px;flex-wrap:wrap;margin-top:35px}
+.issue02-content .article-end a{border:1px solid #d6d2df;border-radius:30px;text-decoration:none;font-size:13px;padding:12px 18px;font-weight:700}
+.issue02-content .not-found{padding:80px 5vw}
+.issue02-content a:focus-visible{outline:3px solid #9861ff;outline-offset:5px}
+.issue02-content .no-script{padding:30px;background:#ffe557}
+
+@media(min-width:1600px){.issue02-content .feature-stage{max-width:1600px;margin:auto}
+}
+@media(max-width:1000px){.issue02-content .reader-shell{grid-template-columns:minmax(0,760px);max-width:850px}
+.issue02-content .reader-aside{display:none}
+.issue02-content .feature-copy{padding:35px}
+.issue02-content .feature-visual img{min-height:470px}
+.issue02-content .cover-art{max-height:620px}
+.issue02-content .question-grid{gap:24px}
+}
+@media(max-width:700px){.issue02-content .issue-meta{padding:20px 5vw;font-size:10px;line-height:1.5;gap:20px}
+.issue02-content .cover-type{padding:31px 5vw 26px}
+.issue02-content .cover h1{font-size:48px;line-height:1.02}
+.issue02-content .cover .deck{font-size:18px}
+.issue02-content .eyebrow{font-size:10px;line-height:1.6;margin-bottom:15px}
+.issue02-content .cover-art img{min-height:320px;aspect-ratio:1.15;object-fit:cover;object-position:60% center}
+.issue02-content .button{font-size:13px;padding:15px 21px;gap:22px}
+.issue02-content .editorial{grid-template-columns:1fr;padding:40px 6vw;gap:24px}
+.issue02-content .editorial h2{font-size:34px}
+.issue02-content .editorial p{font-size:16px}
+.issue02-content .issue-nav{justify-content:flex-start;padding:20px 5vw;gap:8px}
+.issue02-content .issue-nav a{font-size:11px;padding:9px 12px}
+.issue02-content .feature{margin-top:45px}
+.issue02-content .section-label{padding:0 5vw;margin-bottom:18px;font-size:10px;gap:12px}
+.issue02-content .feature-stage{grid-template-columns:1fr}
+.issue02-content .feature-stage.reverse .feature-visual{order:0}
+.issue02-content .feature-visual img{min-height:0;aspect-ratio:3/2;object-fit:cover}
+.issue02-content .feature-copy{padding:30px 6vw 35px}
+.issue02-content .feature-copy h2{font-size:35px}
+.issue02-content .feature-copy .deck{font-size:16px}
+.issue02-content .feature-copy .preview{font-size:15px}
+.issue02-content .art-note{padding:10px 5vw;font-size:10px}
+.issue02-content .brief-section{padding:52px 6vw 0}
+.issue02-content .section-heading{font-size:42px}
+.issue02-content .section-intro{font-size:16px}
+.issue02-content .briefs{grid-template-columns:1fr}
+.issue02-content .brief h3{font-size:28px}
+.issue02-content .beyond{padding:40px 6vw;margin-top:45px}
+.issue02-content .question-grid{grid-template-columns:1fr;gap:25px}
+.issue02-content .question-grid h3{font-size:23px}
+.issue02-content .monday-head{grid-template-columns:1fr;padding:42px 6vw 30px;gap:10px}
+.issue02-content .monday-head h2{font-size:48px}
+.issue02-content .monday-art img{min-height:300px;object-position:57% center}
+.issue02-content .reader-heading{padding:25px 6vw 30px}
+.issue02-content .backlink{margin-bottom:30px}
+.issue02-content .reader-heading h1{font-size:43px}
+.issue02-content .reader-heading .deck{font-size:18px}
+.issue02-content .reader-hero img{min-height:290px;aspect-ratio:1.25;object-position:50% center}
+.issue02-content .reader-shell{padding:35px 6vw 50px}
+.issue02-content .article-body p{font-size:17px;line-height:1.8}
+.issue02-content .article-body h2{font-size:27px;margin-top:36px}
+.issue02-content .article-body .facts{padding:22px}
+.issue02-content .article-body .facts p{font-size:15px}
+.issue02-content .limits{padding:20px}
+.issue02-content .reader-heading .company{font-size:10px}
+.issue02-content .source-links{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){.issue02-content *{transition:none!important}
+}.issue02-content .briefs{
+  row-gap: 32px;
+}
+.issue02-content .brief{
+  padding: 0 0 20px;
+  border-top: 0;
+}
+.issue02-content .brief-art{
+  margin: 0 0 18px;
+}
+.issue02-content .brief-art img{
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+.issue02-content .brief .company{
+  font-size: 11px;
+  margin-bottom: 10px;
+}
+.issue02-content .article-body .chapter-reference{
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: -9px 0 20px;
+}
+
+
+@media (max-width: 370px) {.issue02-content .monday-head{
+    grid-template-columns: minmax(0, 1fr);
+  }
+.issue02-content .monday-head h2, .issue02-content .section-heading, .issue02-content .reader-heading h1{
+    font-size: clamp(30px, 10vw, 38px);
+  }
+.issue02-content .article-body h2{
+    font-size: 23px;
+  }
+.issue02-content h1, .issue02-content h2, .issue02-content h3{
+    overflow-wrap: anywhere;
+  }
+
+}

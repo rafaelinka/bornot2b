@@ -75,3 +75,19 @@ html[lang=en] :focus-visible{outline:3px solid #8452aa;outline-offset:5px}
 .support-heading{display:flex;gap:20px;align-items:flex-start}.support-heading>.bee{flex:0 0 54px;width:54px;height:54px}.support-heading h2{font-size:clamp(28px,3vw,40px);line-height:1.1;letter-spacing:-.035em;margin:10px 0 0;color:#463052}.support-heading .kicker{font-size:10px;color:#76557e}
 .support-copy>p{font-size:16px;line-height:1.75;color:#6a5170;margin:0 0 20px}.support-cta{display:flex;align-items:center;justify-content:space-between;gap:30px;max-width:360px;padding:15px 20px;background:#382846;color:#fff!important;border-radius:99px;text-decoration:none;font-size:14px;font-weight:700}.support-cta:hover{background:#614277}.support-copy small{display:block;font-size:11px;color:#7d647b;line-height:1.6;margin-top:10px}.support-footer{color:#714a86!important;font-weight:650}
 @media(max-width:760px){.support-section{grid-template-columns:1fr;gap:22px;padding:25px 20px;border-radius:25px}.support-heading{gap:13px}.support-heading>.bee{width:44px;height:44px;flex-basis:44px}.support-heading h2{font-size:29px}.support-copy>p{font-size:16px}.support-cta{max-width:none}}
+
+/* Keep the existing masthead controls reachable on narrow screens. */
+@media (max-width: 480px) {
+  html .site-head .head {
+    height: auto;
+    min-height: 72px;
+    flex-wrap: wrap;
+    gap: 7px 10px;
+    padding-block: 8px;
+  }
+  html .site-head .head nav {
+    max-width: 100%;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}

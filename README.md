@@ -8,7 +8,8 @@ Owner-approved English edition 01 and voluntary Boosty support were approved for
 
 - Main site: https://bornot2b.com/ — English by default.
 - Russian edition: https://bornot2b.com/ru/.
-- Stable issue: /issue-01/; archive: /archive/.
+- Permanent issue pages: `/issue-01/` and `/issue-02/`. The archive shows each issue as an illustrated cover at `/archive/`.
+- Both homepages display the latest numbered issue. The build requires a matching English and Russian page for every issue.
 - Each reader page links to its language counterpart.
 - One-time support: https://boosty.to/bornot2b/donate. All stories remain free.
 

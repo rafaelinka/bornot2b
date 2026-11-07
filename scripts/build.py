@@ -4,6 +4,7 @@ from pathlib import Path
 from urllib.parse import urlsplit,urlunsplit
 from xml.sax.saxutils import escape
 import argparse,re,shutil
+from editions import available_editions
 ROOT=Path(__file__).resolve().parents[1]
 OLD_ORIGIN='https://bornot-b2b-concept-2026.wry-calf-7403.chatgpt.site'
 p=argparse.ArgumentParser();p.add_argument('--base-url',required=True);p.add_argument('--output',default='_site');args=p.parse_args()
@@ -14,6 +15,9 @@ out=(ROOT/args.output).resolve()
 if out==ROOT or ROOT not in out.parents or out==ROOT/'site':raise SystemExit('Output must be a separate directory within the repository')
 if out.exists():shutil.rmtree(out)
 shutil.copytree(ROOT/'site',out)
+latest = available_editions(out)[-1]
+for edition_root in (out, out / 'ru'):
+ shutil.copyfile(edition_root / latest / 'index.html', edition_root / 'index.html')
 def transform(url):
  if url.startswith(OLD_ORIGIN):return base+url[len(OLD_ORIGIN):]
  if url.startswith('/') and not url.startswith('//'):return prefix+url
@@ -36,4 +40,4 @@ for path in out.rglob('*.html'):
 (out/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(u)+'</loc></url>\n' for u in sorted(urls))+'</urlset>\n')
 (out/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+base+'/sitemap.xml\n')
 (out/'.nojekyll').touch()
-print('Built',out,'for',base)
+print('Built',out,'for',base,'with',latest,'on both homepages')

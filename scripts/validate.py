@@ -5,11 +5,12 @@ from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 from collections import Counter
 import argparse,re,sys
+from editions import available_editions
 ROOT=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser();p.add_argument('--directory',default='_site');p.add_argument('--base-url',required=True);a=p.parse_args()
 root=ROOT/a.directory;base=urlsplit(a.base_url);prefix=base.path.rstrip('/')
 class Doc(HTMLParser):
- def __init__(self,text):super().__init__();self.ids=[];self.refs=[];self.images=[];self.h1=0;self.feed(text)
+ def __init__(self,text):super().__init__();self.ids=[];self.refs=[];self.images=[];self.covers=[];self.h1=0;self.feed(text)
  def handle_starttag(self,tag,attrs):
   d=dict(attrs)
   if tag=='html':self.lang=d.get('lang')
@@ -19,6 +20,7 @@ class Doc(HTMLParser):
    if d.get(k):self.refs.append(d[k])
   if tag=='h1':self.h1+=1
   if tag=='img':self.images.append(d)
+  if tag=='a' and 'archive-cover' in d.get('class','').split():self.covers.append(d.get('href'))
 docs={p:Doc(p.read_text()) for p in root.rglob('*.html')};errors=[];count=0
 for p,d in docs.items():
  if len(d.ids)!=len(set(d.ids)):errors.append(f'{p}: duplicate ids')
@@ -45,10 +47,17 @@ for p in root.rglob('*'):
   if len(b)<12 or b[:4]!=b'RIFF' or b[8:12]!=b'WEBP' or int.from_bytes(b[4:8], 'little')+8!=len(b):errors.append(f'{p}: invalid WebP asset')
  if p.suffix.lower() in ('.pdf','.epub','.env') or 'editorial' in p.relative_to(root).parts:errors.append(f'Excluded content: {p}')
  if base.netloc!='bornot-b2b-concept-2026.wry-calf-7403.chatgpt.site' and p.is_file() and p.suffix in ('.html','.js','.css') and 'bornot-b2b-concept-2026.wry-calf-7403.chatgpt.site' in p.read_text():errors.append(f'{p}: old origin')
-assert (root/'index.html').read_bytes()==(root/'issue-01/index.html').read_bytes(),'Homepage and latest issue differ'
-assert len(list(root.glob('read/*/index.html')))==4,'Expected four long reads'
-assert len(list(root.glob('ru/read/*/index.html')))==4,'Expected four preserved Russian long reads'
-assert re.search(r'<main\b.*?</main>',(root/'ru/index.html').read_text(),re.S)[0]==re.search(r'<main\b.*?</main>',(root/'ru/issue-01/index.html').read_text(),re.S)[0],'Russian homepage and issue content differ'
+editions = available_editions(root)
+latest = editions[-1]
+for locale in ('', 'ru/'):
+ locale_root = root / locale
+ assert (locale_root / 'index.html').read_bytes() == (locale_root / latest / 'index.html').read_bytes(), f'{locale} homepage must match {latest}'
+ archive = docs[locale_root / 'archive/index.html']
+ assert Counter(archive.covers) == Counter(f'{prefix}/{locale}{issue}/' for issue in editions), f'{locale} archive must have one cover per issue'
+english_readers = {p.parent.name for p in root.glob('read/*/index.html')}
+russian_readers = {p.parent.name for p in root.glob('ru/read/*/index.html')}
+assert english_readers == russian_readers, 'Missing counterpart for a reader page'
+assert {'deal-system', 'jolt-effect', 'partnership-economy', 'warehouse-contract'} <= english_readers, 'Issue 01 reader pages must be preserved'
 for p,d in docs.items():
  if 'issue-00' in p.parts:continue
  text=p.read_text();is_ru='ru' in p.relative_to(root).parts
