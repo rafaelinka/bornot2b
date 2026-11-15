@@ -20,6 +20,9 @@
   background: #ffe375;
   color: #26164a;
 }
+.archive-cover-grid .archive-cover-03 {
+  background: #086044;
+}
 .archive-cover-mast {
   display: flex;
   align-items: center;

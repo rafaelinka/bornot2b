@@ -17,6 +17,9 @@
 .issue02-content .cover-art img{aspect-ratio:3/2;object-fit:cover;object-position:50% 58%;max-height:720px}
 .issue02-content .art-note{font-size:11px;line-height:1.5;color:var(--muted);padding:10px 4vw;margin:0;max-width:1400px;margin:auto}
 .issue02-content .cover .art-note{color:#d9d8fd}
+.issue02-content .cover.cover-03{background:#086044}
+.issue02-content .cover.cover-03 .deck{color:#e5fff2}
+.issue02-content .cover.cover-03 .art-note{color:#c3f1df}
 .issue02-content .button{display:inline-flex;align-items:center;gap:30px;text-decoration:none;border-radius:100px;background:var(--yellow);color:var(--ink);font-weight:800;font-size:14px;padding:17px 24px;line-height:1.3;transition:transform .2s}
 .issue02-content .button:hover{transform:translateY(-2px)}
 .issue02-content .button .arrow{font-size:22px}
