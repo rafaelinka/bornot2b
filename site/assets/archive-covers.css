@@ -20,6 +20,7 @@
   background: #ffe375;
   color: #26164a;
 }
+.archive-cover-grid .archive-cover-04 { background:#d74428; color:#fffef9; }
 .archive-cover-grid .archive-cover-03 {
   background: #086044;
 }
@@ -103,3 +104,4 @@
 .archive-main .archive-intro {
   margin: 0 0 20px;
 }
+
