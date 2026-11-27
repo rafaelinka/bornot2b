@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Build a dependency-free static magazine for Pages or a future custom domain."""
 from pathlib import Path
+from html.parser import HTMLParser
 from urllib.parse import urlsplit,urlunsplit
 from xml.sax.saxutils import escape
 import argparse,re,shutil
@@ -16,8 +17,6 @@ if out==ROOT or ROOT not in out.parents or out==ROOT/'site':raise SystemExit('Ou
 if out.exists():shutil.rmtree(out)
 shutil.copytree(ROOT/'site',out)
 latest = available_editions(out)[-1]
-for edition_root in (out, out / 'ru'):
- shutil.copyfile(edition_root / latest / 'index.html', edition_root / 'index.html')
 def transform(url):
  if url.startswith(OLD_ORIGIN):return base+url[len(OLD_ORIGIN):]
  if url.startswith('/') and not url.startswith('//'):return prefix+url
@@ -30,14 +29,20 @@ for path in out.rglob('*.html'):
  text=text.replace("location.replace('/issue-01/'", "location.replace('"+prefix+"/issue-01/'")
  text=text.replace('location.replace("/issue-01/"', 'location.replace("'+prefix+'/issue-01/"')
  path.write_text(text)
-# Discover canonical reader URLs. The homepage intentionally points to the stable issue URL.
+# Homepages are independent journal pages; numbered editions keep their own URLs.
+class Canonical(HTMLParser):
+ def __init__(self,text):super().__init__();self.url=None;self.feed(text)
+ def handle_starttag(self,tag,attrs):
+  d=dict(attrs)
+  if tag=='link' and 'canonical' in d.get('rel','').split():self.url=d.get('href')
+# Discover canonical reader URLs, regardless of attribute order or quote style.
 urls=set()
 for path in out.rglob('*.html'):
  text=path.read_text()
  if 'noindex' in text or path.parent.name=='issue-00':continue
- m=re.search(r'<link\b[^>]*href="([^"]+)"[^>]*rel="canonical"',text)
- if m:urls.add(m[1])
+ canonical=Canonical(text).url
+ if canonical:urls.add(canonical)
 (out/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+''.join('<url><loc>'+escape(u)+'</loc></url>\n' for u in sorted(urls))+'</urlset>\n')
 (out/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: '+base+'/sitemap.xml\n')
 (out/'.nojekyll').touch()
-print('Built',out,'for',base,'with',latest,'on both homepages')
+print('Built',out,'for',base,'with independent homepages and latest edition',latest)
