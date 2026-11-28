@@ -4,17 +4,20 @@ from pathlib import Path
 from html.parser import HTMLParser
 from urllib.parse import urlsplit,unquote
 from collections import Counter
+from xml.etree import ElementTree
 import argparse,re,sys
 from editions import available_editions
 ROOT=Path(__file__).resolve().parents[1]
 p=argparse.ArgumentParser();p.add_argument('--directory',default='_site');p.add_argument('--base-url',required=True);a=p.parse_args()
 root=ROOT/a.directory;base=urlsplit(a.base_url);prefix=base.path.rstrip('/')
 class Doc(HTMLParser):
- def __init__(self,text):super().__init__();self.ids=[];self.refs=[];self.images=[];self.covers=[];self.h1=0;self.feed(text)
+ def __init__(self,text):super().__init__();self.ids=[];self.refs=[];self.images=[];self.covers=[];self.links=[];self.alternates={};self.canonical=None;self.lang=None;self.h1=0;self.feed(text)
  def handle_starttag(self,tag,attrs):
   d=dict(attrs)
   if tag=='html':self.lang=d.get('lang')
-  if tag in ('link','meta') and d.get('rel')=='canonical':self.canonical=d.get('href')
+  if tag=='link' and 'canonical' in d.get('rel','').split():self.canonical=d.get('href')
+  if tag=='link' and 'alternate' in d.get('rel','').split() and d.get('hreflang'):self.alternates[d['hreflang']]=d.get('href')
+  if tag=='a' and d.get('href'):self.links.append(d['href'])
   if 'id' in d:self.ids.append(d['id'])
   for k in ('src','href'):
    if d.get(k):self.refs.append(d[k])
@@ -25,6 +28,7 @@ docs={p:Doc(p.read_text()) for p in root.rglob('*.html')};errors=[];count=0
 for p,d in docs.items():
  if len(d.ids)!=len(set(d.ids)):errors.append(f'{p}: duplicate ids')
  if 'issue-00' not in p.parts and d.h1!=1:errors.append(f'{p}: expected one h1')
+ if 'issue-00' not in p.parts and not d.canonical:errors.append(f'{p}: missing canonical URL')
  for u in d.refs:
   q=urlsplit(u)
   if q.scheme and (q.scheme not in ('http','https') or q.netloc!=base.netloc):continue
@@ -49,9 +53,22 @@ for p in root.rglob('*'):
  if base.netloc!='bornot-b2b-concept-2026.wry-calf-7403.chatgpt.site' and p.is_file() and p.suffix in ('.html','.js','.css') and 'bornot-b2b-concept-2026.wry-calf-7403.chatgpt.site' in p.read_text():errors.append(f'{p}: old origin')
 editions = available_editions(root)
 latest = editions[-1]
+try:
+ sitemap_urls={node.text for node in ElementTree.parse(root/'sitemap.xml').iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')}
+except (OSError,ElementTree.ParseError) as exc:
+ errors.append(f'Sitemap could not be read: {exc}');sitemap_urls=set()
 for locale in ('', 'ru/'):
  locale_root = root / locale
- assert (locale_root / 'index.html').read_bytes() == (locale_root / latest / 'index.html').read_bytes(), f'{locale} homepage must match {latest}'
+ homepage=docs[locale_root/'index.html']
+ homepage_url=a.base_url.rstrip('/')+'/'+locale
+ if homepage.canonical!=homepage_url:errors.append(f'{locale} homepage must have self-canonical {homepage_url}')
+ if homepage_url not in sitemap_urls:errors.append(f'{locale} homepage missing from sitemap')
+ latest_path=f'{prefix}/{locale}{latest}/'
+ if not any(urlsplit(u).path==latest_path and (not urlsplit(u).netloc or urlsplit(u).netloc==base.netloc) for u in homepage.links):errors.append(f'{locale} homepage must link directly to {latest_path}')
+ if (locale_root/'index.html').read_bytes()==(locale_root/latest/'index.html').read_bytes():errors.append(f'{locale} homepage must be independent of {latest}')
+ for language,path in (('en',''),('ru','ru/')):
+  expected=a.base_url.rstrip('/')+'/'+path
+  if homepage.alternates.get(language)!=expected:errors.append(f'{locale} homepage must use reciprocal {language} alternate {expected}')
  archive = docs[locale_root / 'archive/index.html']
  assert Counter(archive.covers) == Counter(f'{prefix}/{locale}{issue}/' for issue in editions), f'{locale} archive must have one cover per issue'
 english_readers = {p.parent.name for p in root.glob('read/*/index.html')}

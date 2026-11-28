@@ -8,8 +8,9 @@ Owner-approved English edition 01 and voluntary Boosty support were approved for
 
 - Main site: https://bornot2b.com/ — English by default.
 - Russian edition: https://bornot2b.com/ru/.
-- Permanent issue pages: `/issue-01/` and `/issue-02/`. The archive shows each issue as an illustrated cover at `/archive/`.
-- Both homepages display the latest numbered issue. The build requires a matching English and Russian page for every issue.
+- Permanent issue pages: `/issue-01/` through `/issue-05/`, with Russian counterparts under `/ru/`. The archive shows each issue as an illustrated cover at `/archive/`.
+- Both homepages are permanent journal pages with their own canonical URLs, a cover linking directly to the latest numbered issue, and selected article links. The build preserves these pages instead of replacing them with an issue copy.
+- Each numbered issue and full analysis retains its permanent address after a newer issue appears. The build requires matching English and Russian pages for every issue.
 - Each reader page links to its language counterpart.
 - One-time support: https://boosty.to/bornot2b/donate. All stories remain free.
 
@@ -27,5 +28,7 @@ The site uses system fonts; it distributes no font files. Raw book files, intern
 python3 scripts/build.py --base-url https://bornot2b.com
 python3 scripts/validate.py --base-url https://bornot2b.com
 ```
+
+Validation checks independent self-canonical homepages, reciprocal language links, direct links to the latest issue, and inclusion of both homepages in the sitemap, in addition to existing reader and archive checks.
 
 GitHub Actions builds from source. Pushes only run checks. Publication is manual through `Publish approved issue` on main, after owner approval. HTTPS is enforced for the custom domain.
