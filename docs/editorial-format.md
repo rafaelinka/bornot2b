@@ -43,6 +43,8 @@ Use clear US English, concrete verbs and industry terms explained on first use. 
 
 Retain the bee identity, system fonts, bright palettes and rounded layouts. White cartoon characters act out each story, with no frame around the illustration itself. Company marks provide editorial context, never an implied endorsement. Motion is optional and respects reduced-motion preferences.
 
+Story illustrations include one small living bee watching the characters work from above. Use the established character seen in the issue 02 and 03 closing scenes: a round yellow face, black oval eyes, a small smile, round-tipped antennae, a striped body, white loop-shaped wings and little yellow feet. Vary its perch or hovering pose to fit the scene, with its attention directed toward the activity. Keep it secondary to the story. The bee is a character in the scene; the masthead retains its existing logo. Check left and right hands, physical contact with props and the reading direction of working documents after every image edit.
+
 ## Evidence and release workflow
 
 1. Collect primary sources and record original publication date, event date, country, claim and limits.
