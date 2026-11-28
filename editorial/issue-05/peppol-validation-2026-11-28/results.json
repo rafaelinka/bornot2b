@@ -1,0 +1,142 @@
+{
+  "checked_on": "2026-11-28",
+  "source_url": "https://docs.peppol.eu/poacc/billing/3.0/2026-Q4/files/PEPPOL-EN16931-UBL.sch",
+  "source_sha256": "6436303f7a2c1a4bf5eddd5c89fb0c60e2d563cd725f2ab12b2fd5ad98680ad6",
+  "source_bytes": 139117,
+  "source_release": "2026 November 3.1.0",
+  "engine": "SaxonC-HE 13.1 from Saxonica",
+  "python": "3.12.14",
+  "scope": "Only two selected identifier assertions; synthetic XML fragments, not complete conformant invoices.",
+  "not_tested": [
+    "UBL/XSD schema",
+    "all other BIS rules",
+    "directory registration",
+    "Invoice Response processing",
+    "transport or access point",
+    "ERP",
+    "bank settlement"
+  ],
+  "rules": [
+    {
+      "id": "PEPPOL-COMMON-R040",
+      "context": "cbc:EndpointID[@schemeID = '0088'] | cac:PartyIdentification/cbc:ID[@schemeID = '0088'] | cbc:CompanyID[@schemeID = '0088']",
+      "test": "matches(normalize-space(), '^[0-9]{13}$') and u:gln(normalize-space())",
+      "severity": "fatal"
+    },
+    {
+      "id": "PEPPOL-COMMON-R054",
+      "context": "cbc:EndpointID[@schemeID = '0106'] | cac:PartyIdentification/cbc:ID[@schemeID = '0106'] | cbc:CompanyID[@schemeID = '0106']",
+      "test": "matches(normalize-space(), '^[0-9]{8}$')",
+      "severity": "fatal"
+    }
+  ],
+  "cases": [
+    {
+      "fixture": "invoice-valid-identifiers.xml",
+      "sha256": "bcd096d14893558b2ad65d2db46e20b9b7166c0d7fbde9c99f4c7bec8f871561",
+      "checks": [
+        {
+          "rule": "PEPPOL-COMMON-R040",
+          "severity": "fatal",
+          "value": "1234567890128",
+          "passed": "true",
+          "checksum_only": "true"
+        },
+        {
+          "rule": "PEPPOL-COMMON-R054",
+          "severity": "fatal",
+          "value": "12345678",
+          "passed": "true"
+        }
+      ],
+      "failed_rules": []
+    },
+    {
+      "fixture": "invoice-gln-bad-check-digit.xml",
+      "sha256": "aaaf8edded7bf3a65a7b8ffb12ecc2981352a2bf9cd62da041645185aa7cb0ec",
+      "checks": [
+        {
+          "rule": "PEPPOL-COMMON-R040",
+          "severity": "fatal",
+          "value": "1234567890129",
+          "passed": "false",
+          "checksum_only": "false"
+        },
+        {
+          "rule": "PEPPOL-COMMON-R054",
+          "severity": "fatal",
+          "value": "12345678",
+          "passed": "true"
+        }
+      ],
+      "failed_rules": [
+        "PEPPOL-COMMON-R040"
+      ]
+    },
+    {
+      "fixture": "invoice-gln-too-long.xml",
+      "sha256": "8c8b7dcb1cd3f3f217e8588995f5c6c721b5764eb99bf56810adb2a0b2488848",
+      "checks": [
+        {
+          "rule": "PEPPOL-COMMON-R040",
+          "severity": "fatal",
+          "value": "01234567890128",
+          "passed": "false",
+          "checksum_only": "true"
+        },
+        {
+          "rule": "PEPPOL-COMMON-R054",
+          "severity": "fatal",
+          "value": "12345678",
+          "passed": "true"
+        }
+      ],
+      "failed_rules": [
+        "PEPPOL-COMMON-R040"
+      ]
+    },
+    {
+      "fixture": "invoice-kvk-too-short.xml",
+      "sha256": "13d04f7441ac7ad1487ec983f1fd56e630323cd2744547b6b06196a00a2738f3",
+      "checks": [
+        {
+          "rule": "PEPPOL-COMMON-R040",
+          "severity": "fatal",
+          "value": "1234567890128",
+          "passed": "true",
+          "checksum_only": "true"
+        },
+        {
+          "rule": "PEPPOL-COMMON-R054",
+          "severity": "fatal",
+          "value": "1234567",
+          "passed": "false"
+        }
+      ],
+      "failed_rules": [
+        "PEPPOL-COMMON-R054"
+      ]
+    },
+    {
+      "fixture": "creditnote-valid-identifiers.xml",
+      "sha256": "66cac8c277d7871ae49e996038a40c441c099bfc53a37967d923554d6c20180b",
+      "checks": [
+        {
+          "rule": "PEPPOL-COMMON-R040",
+          "severity": "fatal",
+          "value": "1234567890128",
+          "passed": "true",
+          "checksum_only": "true"
+        },
+        {
+          "rule": "PEPPOL-COMMON-R054",
+          "severity": "fatal",
+          "value": "12345678",
+          "passed": "true"
+        }
+      ],
+      "failed_rules": []
+    }
+  ],
+  "assertions_evaluated": 10
+}
